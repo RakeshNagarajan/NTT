@@ -1,14 +1,17 @@
 apiVersion: apps/v1
-kind: deployment
+kind: Deployment
 metadata:
   name: application-ntt
   namespace: ntt
 spec:
   replicas: 1
+  selector:
+    matchingLabel:
+      name: app
   template:
     spec:
       containers:
       - name: application-ntt
         image: rakeshnagarajan/ntt:v1
-        imagepullpolicy: always
+        imagePullPolicy: always
         
