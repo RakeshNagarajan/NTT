@@ -1,16 +1,20 @@
 pipeline{
-    agent "k8s-node"
+    agent any
     stages{
         stage("git clone"){
             steps{
                 script{
-                    sh 'git clone https://github.com/RakeshNagarajan/NTT.git'
+                    //git 'https://github.com/RakeshNagarajan/NTT.git'
+                    //sh 'git clone https://github.com/RakeshNagarajan/NTT.git'
+                    //sh 'git pull'
+                    sh 'ls -lrt'
                 }
             }
         }
         stage("sonarqube scanner"){
             steps{
                 script{
+                    
                     echo "sonar scanner needs to be configured"
                 }
             }
@@ -18,7 +22,7 @@ pipeline{
         stage("docker build"){
             steps{
                 script{
-                    sh 'docker build -t rakeshnagarajan/ntt:v1'
+                    sh 'cd $WORKSPACE/NTT; docker build -t rakeshnagarajan/ntt:v1 .'
                     sh 'docker push rakeshnagarajan/ntt:v1'
                 }
             }
