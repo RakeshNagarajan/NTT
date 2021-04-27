@@ -11,7 +11,7 @@ pipeline{
         stage("sonarqube scanner"){
             steps{
                 script{
-                    
+                    echo "sonar scanner needs to be configured"
                 }
             }
         }
